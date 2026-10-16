@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storm the Falls Car Show: Niagara's Biggest Indoor Car Show</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&amp;family=Kaushan+Script&amp;family=Barlow+Semi+Condensed:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7EFDC;
+    --card: #FFF9EA;
+    --grape: #4B1480;
+    --grape-deep: #230A40;
+    --magenta: #C2185B;
+    --gold: #E3B341;
+    --gold-deep: #A87B12;
+    --teal: #1BB3AC;
+    --ink: #1B1024;
+    --font-fraktur: 'UnifrakturCook', 'Old English Text MT', Georgia, serif;
+    --font-script: 'Kaushan Script', 'Brush Script MT', cursive;
+    --font-body: 'Barlow Semi Condensed', 'Arial Narrow', Arial, sans-serif;
+    --gold-foil: linear-gradient(180deg, #FFF1B8 0%, #E3B341 45%, #A87B12 55%, #F2CF6B 100%);
+    --candy: linear-gradient(170deg, #230A40 0%, #4B1480 38%, #8E1B8F 68%, #C2185B 100%);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--font-body); font-size: 1.08rem; font-weight: 500; line-height: 1.6; }
+  a { color: var(--grape); text-decoration-color: var(--gold-deep); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  a:focus-visible, .cta-button:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  .breadcrumb-nav { background: var(--grape-deep); padding: 9px 0; font-size: 0.85rem; border-bottom: 2px solid var(--gold); }
+  .breadcrumb-nav a { color: var(--gold); text-decoration: none; }
+  .breadcrumb-nav a:hover { text-decoration: underline; }
+  .breadcrumb-nav .sep { margin: 0 8px; color: #8C74B0; }
+  .breadcrumb-nav [aria-current="page"] { color: var(--cream); }
+
+  /* ===== Hero: candy fade paint and a wire wheel ===== */
+  .hero { position: relative; overflow: hidden; padding: 66px 0 96px; background: var(--candy); color: var(--cream); }
+  .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 55% 40% at 20% 0%, rgba(255,255,255,0.28), transparent 65%); }
+  /* The wrapper stays still so the hover area never moves while the wheel inside it spins. */
+  .wheel-hit { position: absolute; z-index: 1; right: -90px; top: 50%; width: 400px; height: 400px; margin-top: -200px; border-radius: 50%; cursor: pointer; }
+  .wheel-hit .wheel { display: block; width: 100%; height: 100%; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45));
+    animation: spin-load 2.6s cubic-bezier(0.12, 0.7, 0.2, 1) 1; }
+  .wheel-hit:hover .wheel { animation: spin-hover 1.8s cubic-bezier(0.2, 0.6, 0.2, 1) 1; }
+  @keyframes spin-load { from { transform: rotate(-540deg); } to { transform: rotate(0deg); } }
+  /* Ends on a full multiple of 360 degrees so the wheel does not jump when the animation finishes. */
+  @keyframes spin-hover { from { transform: rotate(0deg); } to { transform: rotate(720deg); } }
+  @media (prefers-reduced-motion: reduce) { .wheel-hit .wheel, .wheel-hit:hover .wheel { animation: none; } }
+  @media (max-width: 760px) { .wheel-hit { width: 260px; height: 260px; margin-top: -130px; right: -110px; opacity: 0.55; } }
+  /* Lets the pointer reach the wheel underneath the text column. */
+  .hero .wrap { position: relative; z-index: 2; pointer-events: none; }
+  .hero h1 { font-family: var(--font-fraktur); font-weight: 700; font-size: clamp(3.4rem, 12vw, 7.2rem); line-height: 0.95; margin: 0 0 6px;
+    background: var(--gold-foil); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(3px 4px 0 rgba(20,5,40,0.85)); }
+  .hero .script { font-family: var(--font-script); font-size: clamp(1.7rem, 5vw, 2.6rem); line-height: 1.15; margin: 0 0 16px; color: #FFD6EC; text-shadow: 2px 2px 0 var(--grape-deep); }
+  .hero .tagline { max-width: 48ch; font-size: 1.15rem; margin: 0; }
+
+  /* ===== Gold scroll divider ===== */
+  .scroll { display: block; width: 100%; max-width: 380px; height: 24px; margin: 0 0 22px; }
+
+  /* ===== Box office plaque ===== */
+  .plaque-row { margin-top: -44px; position: relative; z-index: 4; }
+  .plaque { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); background: var(--grape-deep); color: var(--cream);
+    border: 3px solid var(--gold); border-radius: 12px; box-shadow: 0 0 0 4px var(--grape-deep), 0 0 0 6px var(--gold), 6px 9px 0 6px rgba(35,10,64,0.28); overflow: hidden; }
+  .plaque .cell { padding: 20px 22px; border-right: 1px solid rgba(227,179,65,0.45); }
+  .plaque .cell:last-child { border-right: none; }
+  .plaque .cell h2 { font-family: var(--font-script); font-weight: 400; font-size: 1.45rem; line-height: 1.1; margin: 0 0 2px; color: #FFB3DB; }
+  .plaque .cell .big { font-family: var(--font-fraktur); font-weight: 700; font-size: 2.3rem; line-height: 1.1; display: block;
+    background: var(--gold-foil); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  .plaque .cell p { margin: 2px 0 0; font-size: 0.98rem; }
+  @media (max-width: 640px) { .plaque .cell { border-right: none; border-bottom: 1px solid rgba(227,179,65,0.45); } .plaque .cell:last-child { border-bottom: none; } }
+
+  section { padding: 58px 0; }
+  h2.section-title { font-family: var(--font-fraktur); font-weight: 700; font-size: clamp(2.1rem, 6.5vw, 3rem); line-height: 1; margin: 0 0 10px; color: var(--grape); text-shadow: 2px 2px 0 var(--gold); }
+
+  /* ===== Class cards ===== */
+  .classes { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px; }
+  .classes .spec { background: var(--card); border: 3px solid var(--grape); outline: 2px solid var(--gold-deep); outline-offset: -9px; border-radius: 14px 4px 14px 4px; padding: 24px 22px; box-shadow: 4px 5px 0 var(--grape-deep); }
+  .classes .spec h3 { font-family: var(--font-script); font-weight: 400; font-size: 1.9rem; line-height: 1.1; margin: 0 0 4px; color: var(--magenta); }
+  .classes .spec p { margin: 0; }
+
+  /* ===== Guidelines ===== */
+  ul.guidelines { list-style: none; margin: 0; padding: 0; }
+  ul.guidelines li { position: relative; padding: 16px 18px 16px 62px; margin-bottom: 14px; background: var(--card); border: 3px solid var(--grape); border-radius: 10px; }
+  ul.guidelines li::before { content: ""; position: absolute; left: 16px; top: 50%; width: 28px; height: 28px; margin-top: -14px; border-radius: 50%;
+    background: var(--gold-foil); border: 3px solid var(--grape-deep); box-shadow: inset 0 0 0 5px var(--magenta); }
+  ul.guidelines strong { color: var(--grape); }
+
+  /* ===== Newsletter CTA ===== */
+  .newsletter-cta { text-align: center; padding: 54px 0; color: var(--cream); background: var(--candy); border-top: 4px solid var(--gold); border-bottom: 4px solid var(--gold); }
+  .newsletter-cta h2 { font-family: var(--font-fraktur); font-weight: 700; font-size: clamp(2.1rem, 6.5vw, 3rem); margin: 0 0 8px; color: #FFE08A; text-shadow: 3px 3px 0 var(--grape-deep); }
+  .newsletter-cta p { max-width: 460px; margin: 0 auto 24px; }
+  .cta-button { display: inline-block; background: var(--gold-foil); color: var(--grape-deep); text-decoration: none; font-family: var(--font-script); font-size: 1.45rem; padding: 8px 34px; border: 3px solid var(--grape-deep); border-radius: 999px; box-shadow: 4px 5px 0 var(--grape-deep); transition: transform 0.12s ease, box-shadow 0.12s ease; }
+  .cta-button:hover { transform: translate(2px, 3px); box-shadow: 2px 2px 0 var(--grape-deep); }
+
+  /* ===== Gallery with gold frames ===== */
+  .gallery-bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 140px; gap: 14px; }
+  .gallery-bento .tile { position: relative; overflow: hidden; padding: 5px; background: var(--gold-foil); border: 3px solid var(--grape-deep); border-radius: 6px; box-shadow: 3px 4px 0 var(--grape-deep); }
+  .gallery-bento .tile label { display: block; width: 100%; height: 100%; cursor: zoom-in; overflow: hidden; border: 2px solid var(--grape-deep); }
+  .gallery-bento .tile img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.15) contrast(1.05); transition: transform 0.2s ease; }
+  .gallery-bento .tile label:hover img { transform: scale(1.05); }
+  .gallery-bento .tile.wide { grid-column: span 2; }
+  .gallery-bento .tile.tall { grid-row: span 2; }
+  @media (max-width: 640px) { .gallery-bento { grid-template-columns: repeat(2, 1fr); } }
+  .lb-toggle { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(27,16,36,0.95); z-index: 1000; align-items: center; justify-content: center; padding: 32px; cursor: zoom-out; }
+  .lb-toggle:checked + .lightbox { display: flex; }
+  .lightbox img { max-width: 92vw; max-height: 88vh; width: auto; height: auto; object-fit: contain; border: 6px solid var(--gold); outline: 3px solid var(--magenta); }
+  .lightbox-close { position: absolute; top: 18px; right: 28px; color: var(--gold); font-size: 2.4rem; line-height: 1; }
+
+  /* ===== Links ===== */
+  .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .link-card { background: var(--card); border: 3px solid var(--grape); border-left: 12px solid var(--teal); border-radius: 6px; padding: 14px 18px; transition: transform 0.12s ease, box-shadow 0.12s ease; }
+  .link-card:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--grape-deep); }
+  .link-card h3 { font-family: var(--font-script); font-weight: 400; font-size: 1.45rem; line-height: 1.1; margin: 0 0 4px; color: var(--magenta); }
+  .link-card p { margin: 0; }
+
+  footer { background: var(--grape-deep); color: var(--gold); text-align: center; padding: 26px 0; font-size: 0.9rem; border-top: 3px solid var(--gold); }
+</style>
+</head>
+<body>
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+  <div class="wrap">
+    <a href="https://niagaradigest.ca/" target="_blank" rel="noopener noreferrer">Home</a>
+    <span class="sep">&raquo;</span>
+    <span aria-current="page">Storm the Falls</span>
+  </div>
+</nav>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="scrollwork" viewBox="0 0 380 24">
+      <g fill="none" stroke="#A87B12" stroke-width="2.2" stroke-linecap="round">
+        <path d="M4 12 C18 -2 36 -2 36 10 C36 18 26 18 26 11 C26 7 31 7 31 10"/>
+        <path d="M36 12 H150"/>
+        <path d="M376 12 C362 26 344 26 344 14 C344 6 354 6 354 13 C354 17 349 17 349 14" transform="translate(0 -2)"/>
+        <path d="M344 10 H230"/>
+        <path d="M150 12 C165 12 170 4 190 4 C210 4 215 12 230 12 C215 12 210 20 190 20 C170 20 165 12 150 12 Z" stroke="#4B1480"/>
+      </g>
+      <path d="M190 8 L194 12 L190 16 L186 12 Z" fill="#C2185B"/>
+    </symbol>
+    <symbol id="spoke" viewBox="0 0 200 200"><line x1="100" y1="22" x2="100" y2="178"/></symbol>
+  </defs>
+</svg>
+
+<header class="hero">
+  <div class="wheel-hit">
+  <svg class="wheel" viewBox="0 0 200 200" aria-hidden="true">
+    <defs>
+      <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" stop-color="#C9D0D6"/><stop offset="0.5" stop-color="#7A858E"/><stop offset="1" stop-color="#E9EDF0"/>
+      </linearGradient>
+    </defs>
+    <circle cx="100" cy="100" r="98" fill="#120A18"/>
+    <circle cx="100" cy="100" r="86" fill="#F7EFDC"/>
+    <circle cx="100" cy="100" r="76" fill="#120A18"/>
+    <circle cx="100" cy="100" r="72" fill="none" stroke="url(#rim)" stroke-width="8"/>
+    <g stroke="#DDE3E8" stroke-width="1.6" stroke-linecap="round">
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(0 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(10 100 100)"/>
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(20 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(30 100 100)"/>
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(40 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(50 100 100)"/>
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(60 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(70 100 100)"/>
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(80 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(90 100 100)"/>
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(100 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(110 100 100)"/>
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(120 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(130 100 100)"/>
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(140 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(150 100 100)"/>
+      <line x1="100" y1="28" x2="100" y2="172" transform="rotate(160 100 100)"/><line x1="100" y1="28" x2="100" y2="172" transform="rotate(170 100 100)"/>
+    </g>
+    <circle cx="100" cy="100" r="22" fill="url(#rim)" stroke="#120A18" stroke-width="2"/>
+    <circle cx="100" cy="100" r="12" fill="#E3B341" stroke="#120A18" stroke-width="2"/>
+    <path d="M100 91 L109 100 L100 109 L91 100 Z" fill="#C2185B"/>
+  </svg>
+  </div>
+  <div class="wrap">
+    <h1>Storm the Falls</h1>
+    <p class="script">Niagara's biggest indoor car show</p>
+    <p class="tagline">Lowriders, hot rods, classics, tuners, exotics, and race cars under one roof for one day, rain or shine.</p>
+  </div>
+</header>
+
+<div class="plaque-row">
+  <div class="wrap">
+    <div class="plaque">
+      <div class="cell"><h2>Doors open</h2><span class="big">12:30 PM</span><p>Tickets at the door only</p></div>
+      <div class="cell"><h2>Show runs</h2><span class="big">1 to 8 PM</span><p>One day, once a year</p></div>
+      <div class="cell"><h2>Admission</h2><span class="big">$15</span><p>Kids 12 and under free</p></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title">What's on the Floor</h2>
+    <svg class="scroll" aria-hidden="true"><use href="#scrollwork"></use></svg>
+    <div class="classes">
+      <div class="spec"><h3>Lowriders</h3><p>Placeholder text for this vehicle class.</p></div>
+      <div class="spec"><h3>Hot Rods</h3><p>Placeholder text for this vehicle class.</p></div>
+      <div class="spec"><h3>Tuners</h3><p>Placeholder text for this vehicle class.</p></div>
+      <div class="spec"><h3>Race Cars</h3><p>Placeholder text for this vehicle class.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="newsletter-cta">
+  <div class="wrap">
+    <h2>Stay in the Loop</h2>
+    <p>Placeholder text for the newsletter signup banner.</p>
+    <a class="cta-button" href="https://niagaradigest.ca/newsletter" target="_blank" rel="noopener noreferrer">Join the Newsletter</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title">Photo Gallery</h2>
+    <svg class="scroll" aria-hidden="true"><use href="#scrollwork"></use></svg>
+    <div class="gallery-bento">
+      <div class="tile wide tall"><label for="lb1"><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/1966-mustang-KKefwgh2vOFXm8sT.jpeg" alt="Custom widebody 1966 Ford Mustang with blue paint and white racing stripes"></label></div>
+      <div class="tile"><label for="lb2"><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/mad-max-jEDsjHleFXy9vVQ2.jpeg" alt="Mad Max style vehicle on display"></label></div>
+      <div class="tile"><label for="lb3"><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/subaru-POpTjOZwk6O5dQBT.jpeg" alt="Subaru at a Niagara car show"></label></div>
+      <div class="tile wide"><label for="lb4"><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/connor-vw-oYd5BH5Sf9Kpxrlo.jpg" alt="Stanced blue Volkswagen Cabrio with Storm the Falls decal"></label></div>
+      <div class="tile"><label for="lb5"><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/lambo-xBWAY6u7OFge1iue.jpeg" alt="Lamborghini on display at Storm the Falls"></label></div>
+      <div class="tile"><label for="lb6"><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/ferrari-HTRstIP0OoChlMUW.jpeg" alt="Ferrari at a Niagara car show"></label></div>
+    </div>
+
+    <input type="checkbox" id="lb1" class="lb-toggle"><label for="lb1" class="lightbox"><span class="lightbox-close">&times;</span><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/1966-mustang-KKefwgh2vOFXm8sT.jpeg" alt="Custom widebody 1966 Ford Mustang"></label>
+    <input type="checkbox" id="lb2" class="lb-toggle"><label for="lb2" class="lightbox"><span class="lightbox-close">&times;</span><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/mad-max-jEDsjHleFXy9vVQ2.jpeg" alt="Mad Max style vehicle on display"></label>
+    <input type="checkbox" id="lb3" class="lb-toggle"><label for="lb3" class="lightbox"><span class="lightbox-close">&times;</span><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/subaru-POpTjOZwk6O5dQBT.jpeg" alt="Subaru at a Niagara car show"></label>
+    <input type="checkbox" id="lb4" class="lb-toggle"><label for="lb4" class="lightbox"><span class="lightbox-close">&times;</span><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/connor-vw-oYd5BH5Sf9Kpxrlo.jpg" alt="Stanced blue Volkswagen Cabrio"></label>
+    <input type="checkbox" id="lb5" class="lb-toggle"><label for="lb5" class="lightbox"><span class="lightbox-close">&times;</span><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/lambo-xBWAY6u7OFge1iue.jpeg" alt="Lamborghini at Storm the Falls"></label>
+    <input type="checkbox" id="lb6" class="lb-toggle"><label for="lb6" class="lightbox"><span class="lightbox-close">&times;</span><img src="https://assets.zyrosite.com/RGzT9t13RJnkaOcd/ferrari-HTRstIP0OoChlMUW.jpeg" alt="Ferrari at a Niagara car show"></label>
+  </div>
+</section>
+
+<section style="padding-top: 0;">
+  <div class="wrap">
+    <h2 class="section-title">Show Rules</h2>
+    <svg class="scroll" aria-hidden="true"><use href="#scrollwork"></use></svg>
+    <ul class="guidelines">
+      <li><strong>Placeholder rule one.</strong> Placeholder text for the guideline.</li>
+      <li><strong>Placeholder rule two.</strong> Placeholder text for the guideline.</li>
+      <li><strong>Placeholder rule three.</strong> Placeholder text for the guideline.</li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding-top: 0;">
+  <div class="wrap">
+    <h2 class="section-title">Official Links</h2>
+    <svg class="scroll" aria-hidden="true"><use href="#scrollwork"></use></svg>
+    <div class="link-grid">
+      <div class="link-card"><h3>Facebook</h3><p><a href="https://www.facebook.com/stormthefalls/" target="_blank" rel="noopener noreferrer">facebook.com/stormthefalls</a></p></div>
+      <div class="link-card"><h3>Instagram</h3><p><a href="https://www.instagram.com/stormthefalls/" target="_blank" rel="noopener noreferrer">instagram.com/stormthefalls</a></p></div>
+      <div class="link-card"><h3>Photo Gallery</h3><p><a href="https://stormthefalls.ca/photo-gallery/" target="_blank" rel="noopener noreferrer">stormthefalls.ca/photo-gallery</a></p></div>
+      <div class="link-card"><h3>Vehicle Registration</h3><p><a href="https://stormthefalls.ca/mep_cat/car-show-events/" target="_blank" rel="noopener noreferrer">Register a vehicle</a></p></div>
+      <div class="link-card"><h3>Vendor Application</h3><p><a href="https://stormthefalls.ca/vendor-application/" target="_blank" rel="noopener noreferrer">Apply as a vendor</a></p></div>
+      <div class="link-card"><h3>Official Site</h3><p><a href="https://stormthefalls.ca/" target="_blank" rel="noopener noreferrer">stormthefalls.ca</a></p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top: 0;">
+  <div class="wrap">
+    <p>Placeholder cross-promotion text with a link to <a href="https://niagaradigest.ca/niagara-events-this-week" target="_blank" rel="noopener noreferrer">Niagara Events This Week</a>.</p>
+  </div>
+</section>
+
+<footer>Niagara Digest &bull; Storm the Falls</footer>
+</body>
+</html>
